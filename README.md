@@ -17,31 +17,69 @@ serves as a statistical witness for Many-Worlds-style interference. Results cons
 
 ## Contents
 
-- `delta_interference_protocol_complete.tex` – Full LaTeX whitepaper
-- `notebooks/` – Jupyter notebook for running the experiment
-- `scripts/` – CLI version of the experiment
-- `results/` – Output counts and Δ values
-- `README.md` – This file
+- `delta_interference_protocol_complete.tex` – Full whitepaper (LaTeX)
+- `notebooks/branch_interference_test.ipynb` – Jupyter notebook for experiment
+- `scripts/run_branch_test.py` – CLI version of the protocol
+- `results/delta_values.csv` – Simulated Δ values over multiple trials
+- `LICENSE` – MIT license
+- `.gitignore` – Build and temp file exclusions
+- `README.md` – Project overview and instructions
 
-## Running the Experiment
+## How It Works
+
+A 3-qubit quantum circuit:
+- Q₀ is the control (placed in superposition)
+- Q₁ executes one logic branch (X gate)
+- Q₂ executes another logic branch (H gate)
+- Q₀ is interfered with a Hadamard gate before measurement
+- All qubits are measured
+- Δ is computed as `P(000) - P(111)`
+
+If Δ ≠ 0 consistently, it implies both branches interfered before decoherence — a result that challenges collapse-only interpretations.
+
+## Sample Δ Output
+
+```
+trial,delta
+1,0.0487
+2,0.0501
+3,0.0479
+...
+10,0.0509
+```
+
+The results suggest a ~5% bias toward one branch, aligned with predictions from the Many-Worlds Interpretation.
+
+## How to Run
 
 ### Requirements
 - Python 3
 - Qiskit
 - Matplotlib
 
-### Simulate the protocol:
+### CLI Run
 
 ```bash
 python scripts/run_branch_test.py
 ```
 
-Or launch the Jupyter notebook from `notebooks/branch_interference_test.ipynb`.
+### Notebook Run
+
+Launch and execute each cell in:
+
+```bash
+notebooks/branch_interference_test.ipynb
+```
+
+Includes circuit build, histogram plot, and Δ calculation.
 
 ## Citation
 
-If you use this protocol in your own work, cite the whitepaper and link to this repository.
+If you use or reference this work, please cite:
+
+**Fulvio Cusumano**, *The Δ-Interference Protocol*  
+[https://github.com/gotnull/delta-interference-protocol](https://github.com/gotnull/delta-interference-protocol)
 
 ---
 
-This is the first known attempt to experimentally isolate a branch-sensitive quantum interference signal that aligns with the Many-Worlds Interpretation.
+This is the first known attempt to experimentally isolate a branch-sensitive quantum interference signal consistent with the Many-Worlds Interpretation.
