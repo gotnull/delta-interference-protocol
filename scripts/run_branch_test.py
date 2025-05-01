@@ -1,5 +1,6 @@
 import csv
 import matplotlib.pyplot as plt
+import numpy as np
 from qiskit import QuantumCircuit, Aer, transpile, assemble
 
 def run_delta_experiment(shots=100000, trials=10):
@@ -27,19 +28,31 @@ def run_delta_experiment(shots=100000, trials=10):
         delta_results.append(delta)
         print(f"Trial {trial}: Δ = {delta:.5f}")
 
-    # Write results to CSV
+    # Save to CSV
     with open("delta_multi_trial_results.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["trial", "delta"])
-        for i, delta in enumerate(delta_results, start=1):
-            writer.writerow([i, delta])
+        for i, d in enumerate(delta_results, 1):
+            writer.writerow([i, d])
+
+    # Compute stats
+    mean_delta = np.mean(delta_results)
+    std_delta = np.std(delta_results)
+
+    print(f"\nMean Δ: {mean_delta:.5f}")
+    print(f"Std Dev: {std_delta:.5f}")
 
     # Plot histogram
+    plt.figure(figsize=(8, 5))
     plt.hist(delta_results, bins=10, edgecolor='black')
+    plt.axvline(0, color='red', linestyle='--', label='Collapse Prediction (Δ = 0)')
+    plt.axvline(mean_delta, color='blue', linestyle='-', label=f'Mean Δ ≈ {mean_delta:.5f}')
     plt.title("Distribution of Δ Across Trials")
     plt.xlabel("Δ Value")
     plt.ylabel("Frequency")
+    plt.legend()
     plt.grid(True)
+    plt.tight_layout()
     plt.show()
 
 if __name__ == "__main__":
