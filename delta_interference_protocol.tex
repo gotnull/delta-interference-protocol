@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{authblk}
+\usepackage{braket}
 \usepackage{hyperref}
 \geometry{margin=1in}
 \title{\textbf{The $\Delta$-Interference Protocol: A Statistical Experiment to Distinguish Quantum Interpretations via Branch-Aware Superposition}}
@@ -28,6 +29,44 @@ MWI asserts that all quantum outcomes are real, with the universe branching at e
 
 In this work, we introduce a novel quantum experiment: the \textit{$\Delta$-Interference Protocol}. It produces a measurable signature that, if consistently non-zero, implies coherent interference between computational branches---supporting the existence of co-evolving quantum paths as required by MWI.
 
+\section{Background and Theory}
+
+\subsection{Interpretations of Quantum Mechanics}
+
+Quantum mechanics accurately predicts experimental outcomes but leaves room for multiple philosophical interpretations of what its formalism implies about reality. The most prominent are:
+
+\begin{itemize}
+  \item \textbf{Copenhagen Interpretation:} Proposes that a quantum system exists in a superposition until measurement, at which point the wavefunction collapses to a single outcome. Collapse is treated as a non-physical, observer-dependent event.
+  
+  \item \textbf{Many-Worlds Interpretation (MWI):} Proposed by Hugh Everett, MWI posits that all possible outcomes of a quantum event occur in physically real, non-interacting branches of the universe. There is no collapse; the wavefunction evolves unitarily.
+  
+  \item \textbf{Pilot-Wave Theory (Bohmian Mechanics):} Introduces hidden variables that guide particles deterministically. A pilot wave influences particle trajectories, preserving realism and determinism but requiring nonlocality.
+  
+  \item \textbf{QBism and Other Epistemic Views:} Interpret the wavefunction as a tool for encoding an agent's knowledge or beliefs about a system, rather than a physical entity.
+\end{itemize}
+
+Each interpretation agrees with the standard quantum formalism but offers radically different ontological claims about what is "real."
+
+\subsection{Why Many-Worlds?}
+
+The Many-Worlds Interpretation has long been considered untestable due to its lack of unique predictions. However, David Deutsch argued that the power of quantum computation might offer indirect support: if quantum computers exploit many coexisting branches to perform parallel computation, then experimental demonstrations of quantum advantage may implicitly favor MWI.
+
+Our protocol is the first to explicitly define and measure a quantity, $\Delta$, that arises from a controlled interference between branches in a quantum circuit. A non-zero $\Delta$ value implies simultaneous amplitude contributions from mutually exclusive logical paths -- something that naturally fits MWI and is harder to explain under collapse models.
+
+\subsection{Defining the $\Delta$ Metric}
+
+The $\Delta$ metric is defined as:
+\[
+\Delta = P(000) - P(111)
+\]
+where:
+\begin{itemize}
+  \item $P(000)$ corresponds to outcomes where the control qubit is measured as $\ket{0}$ and branch A logic was active.
+  \item $P(111)$ corresponds to outcomes where the control qubit is $\ket{1}$ and branch B logic was active.
+\end{itemize}
+
+In collapse models, only one path is realized per trial, and $\Delta$ should converge to zero over many runs. Under MWI, both branches exist and contribute amplitudes, allowing for asymmetric interference and persistent $\Delta \neq 0$.
+
 \section{Method}
 
 \subsection{Objective}
@@ -41,16 +80,16 @@ which compares the outcome probabilities of each branch. Collapse interpretation
 
 Qubits:
 \begin{itemize}
-\item Q$_0$: Control
-\item Q$_1$: Branch A (X logic)
-\item Q$_2$: Branch B (H logic)
+\item Q$\_0$: Control
+\item Q$\_1$: Branch A (X logic)
+\item Q$\_2$: Branch B (H logic)
 \end{itemize}
 
 Steps:
 \begin{enumerate}
-\item Apply Hadamard to Q$_0$: superposition
-\item Apply CNOT from Q$_0$ to Q$_1$ and Q$_2$
-\item Apply Hadamard to Q$_0$ to allow interference
+\item Apply Hadamard to Q$\_0$: superposition
+\item Apply CNOT from Q$\_0$ to Q$\_1$ and Q$\_2$
+\item Apply Hadamard to Q$\_0$ to allow interference
 \item Measure all qubits
 \end{enumerate}
 
