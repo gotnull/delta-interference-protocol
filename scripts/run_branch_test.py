@@ -43,7 +43,7 @@ def run_delta_experiment(shots=100000, trials=10):
         print(f"Trial {trial}: Δ = {delta:.5f}")
 
     # --- Save all Δ values to CSV file ---
-    with open("delta_multi_trial_results.csv", "w", newline="") as f:
+    with open("results/delta_values.csv", "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["trial", "delta"])  # Header
         for i, d in enumerate(delta_results, 1):
