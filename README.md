@@ -77,7 +77,7 @@ Includes circuit build, histogram plot, and Δ calculation.
 
 If you use or reference this work, please cite:
 
-**Fulvio Cusumano**, *The Δ-Interference Protocol*  
+**gotnull**, *The Δ-Interference Protocol*  
 [https://github.com/gotnull/delta-interference-protocol](https://github.com/gotnull/delta-interference-protocol)
 
 ---
